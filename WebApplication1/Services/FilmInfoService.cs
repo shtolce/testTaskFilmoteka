@@ -59,7 +59,11 @@ namespace WebApp.Services
         }
         public int GetMaxCardId()
         {
-            return _db.GetAll().Max(x=>x.Id)+1;
+            var ga = _db.GetAll();
+            if (ga.Count()==0)
+                return 1;
+            else
+                return ga.Max(x => x.Id) + 1;
         }
 
         public IEnumerable<FilmInfo> GetAllCards(string genreName)
