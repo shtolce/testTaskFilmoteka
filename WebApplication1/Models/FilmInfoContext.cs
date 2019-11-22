@@ -21,6 +21,7 @@ namespace WebApp.Models
             db.Genres.Add(Horror);
             db.Genres.Add(Triller);
             db.Genres.Add(SciFi);
+            db.Genres.Add(All);
 
             db.SaveChanges();
         }
