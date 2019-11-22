@@ -1,0 +1,48 @@
+﻿@using WebApp.Models;
+@{
+    Layout = "~/Views/Shared/_Layout_blank.cshtml";
+}
+@model FilmInfo
+
+<div class="col-sm-3 col-md-2 bg-light">
+    <h4>@ViewBag.Title.</h4>
+</div>
+<div class="col-sm-9 col-md-10">
+    <h4>@ViewBag.Message</h4>
+    @using (Html.BeginForm("Edit", "Home" ,FormMethod.Post))
+    {
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name, "Введите название фильма", new { @class = "form-control form-control-lg bg-info" })
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control form-control-lg" })
+            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Year, "Год выпуска", new { @class = "form-control form-control-lg bg-info" })
+            @Html.TextBoxFor(m => m.Year, new { @class = "form-control form-control-lg" })
+            @Html.ValidationMessageFor(m => m.Year, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Info, "Краткое описание", new { @class = "form-control form-control-lg bg-info" })
+            @Html.TextBoxFor(m => m.Info, new { @class = "form-control form-control-lg" })
+            @Html.ValidationMessageFor(m => m.Info, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.GenreId, "Жанр", new { @class = "form-control form-control-lg bg-info" })
+            @Html.DropDownListFor(m => m.GenreId, ViewBag.Genres as SelectList)
+            @Html.ValidationMessageFor(m => m.GenreId, "", new { @class = "text-danger" })
+            @Html.HiddenFor(m => m.PosterFilePAth, new { @class = "PosterFilePAth" })
+
+        </div>
+
+        <div class="pictureFile-div" id="pictureFile" lang="ru">
+            <input type="file" class="pictureFile-input" accept=".bmp,.png,.jpg,.gif" data-preview-file-type="any" id="@Model.Id">
+            <label class="form-control-file" for="pictureFile">
+                Загрузить постер...
+            </label>
+        </div>        
+        <hr>
+        <p><input type="submit" value="Сохранить"></p>
+
+    }
+</div>

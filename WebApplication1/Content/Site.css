@@ -1,12 +1,28 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿.card {
+  width: 15rem;
+  height:15rem; 
+}
+.filmListContent {
+    overflow-y: scroll;
 }
 
+body {
+    padding-top: 1%;
+    padding-bottom: 1%;
+    height: 100%;
+}
+html {
+    height: 100%;
+}
+.container {
+    
+}
+.sideMenu {
+    position: fixed;
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    height:85%;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -21,4 +37,26 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
 }

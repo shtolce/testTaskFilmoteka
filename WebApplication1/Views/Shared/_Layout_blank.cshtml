@@ -1,0 +1,59 @@
+﻿@using WebApp.Models;
+
+
+
+<!DOCTYPE html>
+<html style="height:100%">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/open-iconic/font/css")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="container">
+        <div class="row h-100 filmListContent">
+            <div class="col-sm-1 col-md-2">
+                <span class="oi oi-tablet navbar-brand"> </span>
+            </div>
+            <div class="col-sm-11 col-md-10">
+                <nav class="navbar navbar-expand navbar-light bg-light">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item ">
+                            <a href="@Url.Action("Index","home")" class="oi oi-home nav-link navbar-brand"> </a>
+                        </li>
+                        <li class="nav-item">
+                        </li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </nav>
+
+
+            </div>
+        </div>
+
+    </div>
+    <div class="container body-content pt-3">
+        <div class="row h-100 filmListContent">
+            @RenderBody()
+        </div>
+    </div>
+
+
+    <footer>
+        <p>&copy; Тестовое задание. Дмитрий Ким</p>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/main")
+    @RenderSection("scripts", required: false)
+
+
+
+</body>
+
+</html>

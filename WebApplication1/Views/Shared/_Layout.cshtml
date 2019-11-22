@@ -1,45 +1,99 @@
-﻿<!DOCTYPE html>
-<html>
+﻿@using WebApp.Models;
+
+@model ComplexInfo
+
+@helper PageLinks(PageInfo pageInfo, Func<int, string> pageUrl)
+{
+    string activeClassStr = "";
+    for (int i = 1; i <= pageInfo.PaginLinksPerPage; i++)
+    {
+        activeClassStr = "";
+        if (i == pageInfo.PageIndex)
+        {
+            activeClassStr = "active";
+        }
+
+        <li class="page-item @activeClassStr">
+            <a href="@pageUrl(i)" class="page-link">
+                @i.ToString()
+            </a>
+        </li>
+    }
+}
+
+<!DOCTYPE html>
+<html style="height:100%">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title – приложение ASP.NET</title>
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/open-iconic/font/css")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Имя приложения", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+    @{
+        string enableEdit = "";
+        enableEdit = "disabled";
+        ApplicationUser activeUser = ViewBag.activeUser;
+
+        if (activeUser != null)
+        {
+            enableEdit = "";
+        }
+    }
+
+    <div class="container">
+        <div class="row h-100 filmListContent">
+            <div class="col-sm-1 col-md-2">
+                <span class="oi oi-tablet navbar-brand"> </span>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
-                    <li>@Html.ActionLink("О программе", "About", "Home")</li>
-                    <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+            <div class="col-sm-11 col-md-10">
+                <nav class="navbar navbar-expand navbar-light bg-warning rounded">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item ">
+                            <a href="@Url.Action("Index","home")" class="oi oi-home nav-link navbar-brand"> </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Create","home")" class="nav-link navbar-brand btn btn-link @enableEdit">
+                                Внести информацию о фильме
+                            </a>
+                        </li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </nav>
+
+
             </div>
         </div>
+
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
-        </footer>
+    <div class="container body-content pt-3">
+        <div class="row h-100 filmListContent">
+            @RenderBody()
+        </div>
     </div>
+
+
+    <div class="bg-dark container mt-1 rounded">
+        <ul class="pagination justify-content-center" style="position:center">
+            @PageLinks(Model.PageInfo, x => Url.Action("/Index", new { pageIndex = x }))
+        </ul>
+    </div>
+
+    <footer>
+        <p>&copy; Тестовое задание. Дмитрий Ким</p>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/main")
     @RenderSection("scripts", required: false)
+
+
+
 </body>
+
 </html>

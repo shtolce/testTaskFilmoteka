@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace WebApplication1
+namespace WebApp
 {
     public class BundleConfig
     {
@@ -21,10 +21,15 @@ namespace WebApplication1
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
+            bundles.Add(new ScriptBundle("~/bundles/main").Include(
+                      "~/Scripts/main.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/open-iconic/font/css").Include(
+                      "~/open-iconic/font/css/open-iconic-bootstrap.min.css"));
+
         }
     }
 }

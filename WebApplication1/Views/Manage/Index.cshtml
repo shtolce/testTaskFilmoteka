@@ -1,8 +1,10 @@
-﻿@model WebApplication1.Models.IndexViewModel
+﻿@model WebApp.Models.IndexViewModel
 @{
     ViewBag.Title = "Управление";
 }
-
+@{
+    Layout = "~/Views/Shared/_Layout_blank.cshtml";
+}
 <h2>@ViewBag.Title.</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
@@ -30,13 +32,13 @@
         </dd>
         @*
             Номера телефонов можно использовать в качестве второго проверочного фактора для системы двухфакторной проверки подлинности.
-             
+
              В <a href="https://go.microsoft.com/fwlink/?LinkId=403804">этой статье</a>
                 можно узнать, как настроить для этого приложения ASP.NET двухфакторную проверку подлинности с использованием SMS.
-             
+
              Настроив двухфакторную проверку подлинности, раскомментируйте следующий блок
         *@
-        @*  
+        @*
             <dt>Номер телефона:</dt>
             <dd>
                 @(Model.PhoneNumber ?? "None")
