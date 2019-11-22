@@ -12,6 +12,7 @@ namespace WebApp.Models
     {
         protected override void Seed(FilmInfoContext db)
         {
+
             Genre Dramma = new Genre { Name = "Dramma"};
             Genre Horror = new Genre { Name = "Horror" };
             Genre Triller = new Genre { Name = "Triller" };
